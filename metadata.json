@@ -1,0 +1,5 @@
+{
+  "name": "Smart Greenhouse IoT",
+  "description": "نظام متكامل لإدارة الصوب الزراعية الذكية مع تحكم محلي وسحابي",
+  "requestFramePermissions": []
+}
