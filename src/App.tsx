@@ -5,7 +5,7 @@ import {
   Sliders,
   LineChart,
   Bell,
-  Settings,
+  Info,
   Sprout,
   Menu,
   X,
@@ -29,6 +29,7 @@ import Charts from "./components/Charts";
 import Alerts from "./components/Alerts";
 import CropManagement from "./components/CropManagement";
 import Team from "./components/Team";
+import About from "./components/About";
 import { useAppStore } from "./store";
 import { translations } from "./locales/translations";
 
@@ -67,9 +68,9 @@ function AppContent() {
     { path: "/alerts", label: t.alerts, icon: <Bell className="w-5 h-5" /> },
     { path: "/team", label: t.team, icon: <Users className="w-5 h-5" /> },
     {
-      path: "/settings",
-      label: t.settings,
-      icon: <Settings className="w-5 h-5" />,
+      path: "/about",
+      label: t.about_system,
+      icon: <Info className="w-5 h-5" />,
     },
   ];
 
@@ -146,7 +147,7 @@ function AppContent() {
         {/* Sidebar */}
         <aside
           className={`
-          fixed inset-y-0 ${isRTL ? "right-0" : "left-0"} z-50 w-72 glass-panel !rounded-none !border-y-0 !border-l-0 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:block
+          fixed inset-y-0 ${isRTL ? "right-0" : "left-0"} z-50 w-72 glass-panel !rounded-none !border-y-0 !border-l-0 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static flex flex-col
           ${mobileMenuOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full"}
         `}
         >
@@ -181,7 +182,7 @@ function AppContent() {
             </button>
           </div>
 
-          <nav className="mt-2 px-4 space-y-2 overflow-y-auto h-[calc(100vh-200px)]">
+          <nav className="mt-2 px-4 space-y-2 overflow-y-auto no-scrollbar flex-1 mb-4">
             {navItems.map((item) => (
               <button
                 key={item.path}
@@ -197,10 +198,22 @@ function AppContent() {
               </button>
             ))}
           </nav>
+
+          <div className="p-4 mt-auto border-t border-slate-200 dark:border-white/10 text-center">
+            <a 
+              href="https://diyaa-sami.neocities.org/Diyaa-Sami" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-mono"
+              dir="ltr"
+            >
+              Developed by <span className="font-bold">ENG Diyaa Sami</span>
+            </a>
+          </div>
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-y-auto p-4 lg:p-10 w-full relative flex flex-col">
+        <main className="flex-1 overflow-y-auto no-scrollbar p-4 lg:p-10 w-full relative flex flex-col">
           {location.pathname !== "/" && (
             <div className="mb-6 flex">
               <button
@@ -233,14 +246,7 @@ function AppContent() {
                 <Route path="/crops" element={<CropManagement />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/team" element={<Team />} />
-                <Route
-                  path="/settings"
-                  element={
-                    <div className="p-8 text-center text-slate-500 glass-panel rounded-3xl">
-                      {t.settings}
-                    </div>
-                  }
-                />
+                <Route path="/about" element={<About />} />
               </Routes>
             </motion.div>
           </AnimatePresence>
